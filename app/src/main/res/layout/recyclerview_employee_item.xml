@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/employees_list_layout"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:clickable="true"
+    android:orientation="horizontal"
+    android:layout_marginBottom="8dp"
+    android:background="@color/recycleItem"
+    android:onClick="onEmployeeClick"
+    android:focusable="true">
+
+    <ImageView
+        android:layout_gravity="center"
+        android:paddingLeft="16dp"
+        android:id="@+id/imageView"
+        android:layout_width="70dp"
+        android:layout_height="match_parent"
+        android:clickable="false"
+        tools:srcCompat="@tools:sample/avatars"
+        android:contentDescription="@string/employee_avatar" />
+
+    <TextView
+        android:id="@+id/employeeTextView"
+        style="@style/employee_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="false" />
+
+</LinearLayout>

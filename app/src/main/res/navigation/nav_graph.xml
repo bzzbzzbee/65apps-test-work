@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/specialitySelectFragment">
+
+    <fragment
+        android:id="@+id/employeesListFragment"
+        android:name="com.example.apps65test.fragments.EmployeesListFragment"
+        android:label="EmployeesListFragment"
+        tools:layout="@layout/employees_list_fragment">
+        <argument
+            android:name="specialitySelected"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_employeesListFragment_to_employeeCardFragment2"
+            app:destination="@id/employeeCardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/employeeCardFragment"
+        android:name="com.example.apps65test.fragments.EmployeeCardFragment"
+        android:label="EmployeeCardFragment"
+        tools:layout="@layout/employee_card_fragment">
+        <argument
+            android:name="employeeId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/specialitySelectFragment"
+        android:name="com.example.apps65test.fragments.SpecialitySelectFragment"
+        android:label="SpecialitySelectFragment"
+        tools:layout="@layout/specialities_list_fragment">
+        <action
+            android:id="@+id/action_specialitySelectFragment_to_employeesListFragment"
+            app:destination="@id/employeesListFragment" />
+    </fragment>
+</navigation>

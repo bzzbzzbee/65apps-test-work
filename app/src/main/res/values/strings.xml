@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">apps65Test</string>
+    <string name="welcome_text_content">Пожалуйста, выберите специальность</string>
+    <string name="employee_avatar">employeeAvatar</string>
+    <string name="specialties_string">Специальности:</string>
+    <string name="back_button">back_button</string>
+</resources>
