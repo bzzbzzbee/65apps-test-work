@@ -1,5 +1,6 @@
 package com.example.apps65test.adapters
 
+import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,14 +36,14 @@ class EmployeesListAdapter :
     class EmployeeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val employeeItemView: TextView = itemView.findViewById(R.id.employeeTextView)
         private val empAvatarView: ImageView = itemView.findViewById(R.id.imageView)
-
+        //TODO проверить нулл и "" в именах. Волзможно брать параметром Employee и на месте все проверить, собрать стрингу и дать .text
         fun bind(text: String?, avatarUrl: String?, id: Int?) {
             employeeItemView.text = text
             itemView.tag = id
-            if (avatarUrl != null && avatarUrl != "") {
-                Picasso.get().load(avatarUrl).transform(CircleTransform()).into(empAvatarView)
-            } else {
+            if (avatarUrl.isNullOrEmpty()) {
                 empAvatarView.setImageResource(R.drawable.ic_baseline_person)
+            } else {
+                Picasso.get().load(avatarUrl).transform(CircleTransform()).into(empAvatarView)
             }
         }
 
@@ -58,11 +59,11 @@ class EmployeesListAdapter :
     companion object {
         private val EMPLOYEE_COMPARATOR = object : DiffUtil.ItemCallback<Employee>() {
             override fun areItemsTheSame(oldItem: Employee, newItem: Employee): Boolean {
-                return oldItem === newItem
+                return oldItem.id == newItem.id
             }
 
             override fun areContentsTheSame(oldItem: Employee, newItem: Employee): Boolean {
-                return oldItem.id == newItem.id
+                return oldItem == newItem
             }
         }
     }

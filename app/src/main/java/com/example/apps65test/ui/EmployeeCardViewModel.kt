@@ -12,7 +12,6 @@ class EmployeeCardViewModel @AssistedInject constructor(
     employeesRepository: EmployeesRepository,
     @Assisted employeeId: Int
 ) : ViewModel() {
-
     @Suppress("UNCHECKED_CAST")
     val employee = employeesRepository.getEmployeeById(employeeId).asLiveData()
 

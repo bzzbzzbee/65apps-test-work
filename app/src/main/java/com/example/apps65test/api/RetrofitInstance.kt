@@ -1,5 +1,7 @@
 package com.example.apps65test.api
+/*
 
+import com.example.apps65test.utilities.EMPLOYEES_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -7,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RetrofitInstance {
     private  val retrofit by lazy {
         Retrofit.Builder()
-            .baseUrl("https://gitlab.65apps.com/65gb/static/raw/master/")
+            .baseUrl(EMPLOYEES_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
@@ -15,4 +17,4 @@ object RetrofitInstance {
     val api: RetrofitApi by lazy {
         retrofit.create(RetrofitApi::class.java)
     }
-}
+}*/

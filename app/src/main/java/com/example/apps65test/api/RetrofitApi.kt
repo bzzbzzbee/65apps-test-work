@@ -8,5 +8,4 @@ import retrofit2.http.Url
 interface RetrofitApi {
     @GET
     suspend fun loadResponse(@Url url: String): Response<Root>
-
 }

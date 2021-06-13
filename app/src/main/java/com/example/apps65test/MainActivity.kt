@@ -10,7 +10,7 @@ import com.example.apps65test.fragments.EmployeesListFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.employees_list_fragment.*
 
-
+//TODO надо перекатиться на view binding с котлин синтетик
 @AndroidEntryPoint
 class MainActivity: AppCompatActivity() {
 
@@ -22,12 +22,11 @@ class MainActivity: AppCompatActivity() {
 
         nav = Navigation.findNavController(this, R.id.fragment_nav)
     }
-
+//TODO Проверить есть ли еще варианты реализации навигации по клику на рабочего из списка
     fun onEmployeeClick(view: View) {
         val id = view.tag as Int
         val direction =
             EmployeesListFragmentDirections.actionEmployeesListFragmentToEmployeeCardFragment2(id)
         findNavController(employees_list_fragment.id).navigate(direction)
     }
-
 }

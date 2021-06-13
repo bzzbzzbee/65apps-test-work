@@ -56,7 +56,7 @@ class SpecialitySelectFragment : Fragment() {
                 id: Long
             ) {
                 if (counter > 0){
-                    val selected = parent!!.getItemAtPosition(position).toString()
+                    val selected = parent?.getItemAtPosition(position).toString()
                     val direction =
                         SpecialitySelectFragmentDirections.actionSpecialitySelectFragmentToEmployeesListFragment(
                             selected

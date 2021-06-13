@@ -58,10 +58,10 @@ class EmployeeCardFragment: Fragment() {
                 ageTextView.text = "Возраст: Неизвестен"
             }
 
-            if (it.employeeAvatar != null && it.employeeAvatar != "") {
-                Picasso.get().load(it.employeeAvatar).transform(CircleTransform()).into(employeeAvatar)
-            } else{
+            if (it.employeeAvatar.isNullOrEmpty()) {
                 employeeAvatar.setImageResource(R.drawable.ic_baseline_person)
+            } else {
+                Picasso.get().load(it.employeeAvatar).transform(CircleTransform()).into(employeeAvatar)
             }
         })
 
