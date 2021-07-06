@@ -1,6 +1,7 @@
 package com.example.apps65test.fragments
 
 
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -35,8 +36,8 @@ class SpecialitySelectFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
+        val r: Resources = resources
         var counter = 0
-
         val adapter =
             ArrayAdapter<String>(requireContext(), R.layout.support_simple_spinner_dropdown_item)
         adapter.add("Ничего не выбрано")

@@ -55,8 +55,9 @@ class EmployeeCardFragment: Fragment() {
             binding.nameTextView.text = "${it.firstName} ${it.lastName}"
 
             if (it.dateOfBirth != "-") {
+                val age = it.calcAge()
                 binding.dobTextView.text = "Дата рождения: ${it.dateOfBirth} г."
-                binding.ageTextView.text = "Возраст: ${it.calcAge()}"
+                binding.ageTextView.text = "Возраст: ${resources.getQuantityString(R.plurals.plurals_age,age, age)}"
             } else {
                 binding.dobTextView.text = "Дата рождения: ${it.dateOfBirth}"
                 binding.ageTextView.text = "Возраст: Неизвестен"

@@ -41,7 +41,6 @@ class EmployeesRepository @Inject constructor(private val employeesDao: Employee
     }
     fun getEmployeeById(eid: Int) = employeesDao.getEmployeeById(eid)
 
-    //TODO в инит блоке реализовать заполнение БД
     suspend fun populateEmployeesDB() {
         try {
             val response = retrofitApi.loadResponse(EMPLOYEES_URL)

@@ -44,7 +44,7 @@ class EmployeesListFragment: Fragment() {
     override fun onStart() {
         super.onStart()
 
-        val adapter = EmployeesListAdapter()
+        val adapter = EmployeesListAdapter(resources)
 
         binding.recyclerview.adapter = adapter
         binding.recyclerview.layoutManager = LinearLayoutManager(this.context)

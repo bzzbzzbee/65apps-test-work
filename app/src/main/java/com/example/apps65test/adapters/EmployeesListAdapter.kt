@@ -14,7 +14,7 @@ import com.example.apps65test.data.Employee
 import com.example.apps65test.utilities.CircleTransform
 import com.squareup.picasso.Picasso
 
-class EmployeesListAdapter :
+class EmployeesListAdapter(private val resApp: Resources) :
     ListAdapter<Employee, EmployeesListAdapter.EmployeeViewHolder>(EMPLOYEE_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EmployeeViewHolder {
@@ -25,9 +25,13 @@ class EmployeesListAdapter :
 
         val current = getItem(position)
         val age = current.calcAge()
+        var ageString = "Неизвестен"
+        if (age > 0)
+            ageString = resApp.getQuantityString(R.plurals.plurals_age, age, age)
+
 
         holder.bind(
-            "${current.firstName} ${current.lastName}\nВозраст: $age",
+            "${current.firstName} ${current.lastName}\nВозраст: $ageString",
             current.employeeAvatar,
             current.id
         )
@@ -36,7 +40,7 @@ class EmployeesListAdapter :
     class EmployeeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val employeeItemView: TextView = itemView.findViewById(R.id.employeeTextView)
         private val empAvatarView: ImageView = itemView.findViewById(R.id.imageView)
-        //TODO проверить нулл и "" в именах. Волзможно брать параметром Employee и на месте все проверить, собрать стрингу и дать .text
+
         fun bind(text: String?, avatarUrl: String?, id: Int?) {
             employeeItemView.text = text
             itemView.tag = id
