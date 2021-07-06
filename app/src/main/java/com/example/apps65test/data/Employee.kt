@@ -44,10 +44,4 @@ data class Employee(
              age
          }
      }
-
-/*
-    private fun generatePostfix(age: Int): String {
-        val lastChar = age % 10
-        return if (age in 11..14) "лет" else if (lastChar == 1) "год" else if (lastChar in 2..4) "года" else "лет"
-    }*/
 }

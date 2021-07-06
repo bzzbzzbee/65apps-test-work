@@ -15,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class EmployeesListFragment: Fragment() {
+class EmployeesListFragment : Fragment() {
     private val args: EmployeesListFragmentArgs by navArgs()
 
     @Inject
