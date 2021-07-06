@@ -43,12 +43,13 @@ data class Employee(
                  age--
              }
              //TODO Кидается експепшен "android.content.res.Resources$NotFoundException: Plural resource ID #0x7f0e0001 quantity=20 item=other"
-             val postFix = Resources.getSystem().getQuantityString(R.plurals.plurals_age, age, age)
-             "$age$postFix"
+             //val postFix = Resources.getSystem().getQuantityString(R.plurals.plurals_age, age, age)
+             val postFix = generatePostfix(age)
+             "$age $postFix"
          }
      }
 
-//TODO перенести на plurals. plurals в EmploeePOJO ?
+
     private fun generatePostfix(age: Int): String {
         val lastChar = age % 10
         return if (age in 11..14) "лет" else if (lastChar == 1) "год" else if (lastChar in 2..4) "года" else "лет"

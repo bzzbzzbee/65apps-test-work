@@ -6,19 +6,22 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import com.example.apps65test.databinding.EmployeesMainBinding
 import com.example.apps65test.fragments.EmployeesListFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.employees_list_fragment.*
 
-//TODO надо перекатиться на view binding с котлин синтетик
 @AndroidEntryPoint
 class MainActivity: AppCompatActivity() {
 
     private lateinit var nav: NavController
+    private lateinit var binding: EmployeesMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.employees_main)
+        binding = EmployeesMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         nav = Navigation.findNavController(this, R.id.fragment_nav)
     }

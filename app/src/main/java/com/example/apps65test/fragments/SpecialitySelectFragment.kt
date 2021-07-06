@@ -11,22 +11,25 @@ import com.example.apps65test.R
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.apps65test.databinding.SpecialitiesListFragmentBinding
 import com.example.apps65test.ui.SpecialitiesViewModel
 import com.example.apps65test.utilities.ALL_SPECIALITIES_TEXT
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.specialities_list_fragment.*
 
 @AndroidEntryPoint
 class SpecialitySelectFragment : Fragment() {
     private val specialitiesViewModel: SpecialitiesViewModel by viewModels()
+    private var _binding: SpecialitiesListFragmentBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        return inflater.inflate(R.layout.specialities_list_fragment, container, false)
+        _binding = SpecialitiesListFragmentBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
     }
 
     override fun onStart() {
@@ -45,9 +48,9 @@ class SpecialitySelectFragment : Fragment() {
             }
         })
 
-        specialitySpinner.adapter = adapter
-        specialitySpinner.prompt = "Выберите специальность"
-        specialitySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        binding.specialitySpinner.adapter = adapter
+        binding.specialitySpinner.prompt = "Выберите специальность"
+        binding.specialitySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
             override fun onItemSelected(
                 parent: AdapterView<*>?,
@@ -71,4 +74,8 @@ class SpecialitySelectFragment : Fragment() {
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

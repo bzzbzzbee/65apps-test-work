@@ -12,11 +12,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.apps65test.R
 import com.example.apps65test.utilities.CircleTransform
 import com.example.apps65test.adapters.SpecialityListAdapter
+import com.example.apps65test.databinding.EmployeeCardFragmentBinding
 import com.example.apps65test.ui.EmployeeCardViewModel
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
-import kotlinx.android.synthetic.main.employee_card_fragment.*
 
 @AndroidEntryPoint
 class EmployeeCardFragment: Fragment() {
@@ -32,14 +32,18 @@ class EmployeeCardFragment: Fragment() {
         )
     }
 
+    private var _binding: EmployeeCardFragmentBinding? = null
+    private val binding get() = _binding!!
+
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        return inflater.inflate(R.layout.employee_card_fragment, container, false)
+        _binding = EmployeeCardFragmentBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
     }
 
     @SuppressLint("SetTextI18n")
@@ -48,31 +52,35 @@ class EmployeeCardFragment: Fragment() {
 
         employeeCardViewModel.employee.observe(viewLifecycleOwner, {
 
-            nameTextView.text = "${it.firstName} ${it.lastName}"
+            binding.nameTextView.text = "${it.firstName} ${it.lastName}"
 
             if (it.dateOfBirth != "-") {
-                dobTextView.text = "Дата рождения: ${it.dateOfBirth} г."
-                ageTextView.text = "Возраст: ${it.calcAge()}"
+                binding.dobTextView.text = "Дата рождения: ${it.dateOfBirth} г."
+                binding.ageTextView.text = "Возраст: ${it.calcAge()}"
             } else {
-                dobTextView.text = "Дата рождения: ${it.dateOfBirth}"
-                ageTextView.text = "Возраст: Неизвестен"
+                binding.dobTextView.text = "Дата рождения: ${it.dateOfBirth}"
+                binding.ageTextView.text = "Возраст: Неизвестен"
             }
 
             if (it.employeeAvatar.isNullOrEmpty()) {
-                employeeAvatar.setImageResource(R.drawable.ic_baseline_person)
+                binding.employeeAvatar.setImageResource(R.drawable.ic_baseline_person)
             } else {
-                Picasso.get().load(it.employeeAvatar).transform(CircleTransform()).into(employeeAvatar)
+                Picasso.get().load(it.employeeAvatar).transform(CircleTransform()).into(binding.employeeAvatar)
             }
         })
 
         val adapter = SpecialityListAdapter()
 
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this.context)
+        binding.recyclerView.adapter = adapter
+        binding.recyclerView.layoutManager = LinearLayoutManager(this.context)
 
         employeeCardViewModel.specialities.observe(viewLifecycleOwner, { speciality->
             speciality?.let { adapter.submitList(it) }
         })
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
